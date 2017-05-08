@@ -91,7 +91,7 @@ Then, you need to implement the following:
 4. Fill in the code for the `GET /auth/me` handler in `controllers/auth.js`.
 5. The API contract says that user objects should have an `avatarUrl` field, but as you can see that field is not part of the `users` table in the database. That's OK. The database and REST representations don't have to match at 100%, and resources don't even have to be tied to any storage. In this case though, the `avatarUrl` can be generated from the `email` field using the [Gravatar service](https://en.gravatar.com/site/implement/images/). To do this you'll need to generate an `md5` hash of the email (read the docs!). The best place to make this addition would be in your data loader: before sending out a user object, add an `avatarUrl` property using the Gravatar instructions to generate it. 
 
-  **NOTE**: Even though this logic could be implemented on the client, we choose to implement it at the level of the API. This way we can change our `avatarUrl` logic only once, and all client applications will see the change.
+    **NOTE**: Even though this logic could be implemented on the client, we choose to implement it at the level of the API. This way we can change our `avatarUrl` logic only once, and all client applications will see the change.
   
 
 When you are done, make sure to test your API thoroughly using [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en). You should test the following:
