@@ -75,7 +75,7 @@ There is an **[ExpressJS API for Dashboardly](https://github.com/ziad-saab/dashb
 #### Front-end
 There is a **[web app for Dashboardly](https://github.com/ziad-saab/dashboardly-frontend)**. It is not 100% complete nor in line with the mockups. More is explained below.
 
-### What is left to do?
+### What is left to do for the MVP?
 
 #### Database
 Have a look at the queries being made on the database and verify if any indexes still need to be added to make some queries faster.
@@ -92,6 +92,7 @@ Then, you need to implement the following:
 5. The API contract says that user objects should have an `avatarUrl` field, but as you can see that field is not part of the `users` table in the database. That's OK. The database and REST representations don't have to match at 100%, and resources don't even have to be tied to any storage. In this case though, the `avatarUrl` can be generated from the `email` field using the [Gravatar service](https://en.gravatar.com/site/implement/images/). To do this you'll need to generate an `md5` hash of the email (read the docs!). The best place to make this addition would be in your data loader: before sending out a user object, add an `avatarUrl` property using the Gravatar instructions to generate it. 
 
     **NOTE**: Even though this logic could be implemented on the client, we choose to implement it at the level of the API. This way we can change our `avatarUrl` logic only once, and all client applications will see the change.
+6. Add CORS support! Since your client web app will be hosted on a separate subdomain, you'll need CORS. The `express-cors` middleware can take care of that for you. For now, you can use it without any config, meaning it will allow all domains. **This will need to be changed before deploying.**
   
 
 When you are done, make sure to test your API thoroughly using [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en). You should test the following:
@@ -108,7 +109,7 @@ When you are done, make sure to test your API thoroughly using [Postman](https:/
 10. Using a valid token, create a new bookmark under a board you don't own and make sure it fails
 11. Try creating/modifying/deleting a bookmark without a token and make sure it fails
 
-Once all these elements are working through Postman, the next step will be to test how well they integrate with the client application. Since the app was built using the Apiary mock server, there should be a 100% match :)
+Once all these elements are working through Postman, the next step will be to test how well they integrate with the client application. Since the app was built using the Apiary mock server, there should be a 100% match. **One thing you may have to do is add CORS to your API**.
 
 #### Front-end
 First, you should read all the existing code and understand what it's doing. You should also execute the code in your development environment and make sure it is working.
@@ -117,10 +118,10 @@ Then, you need to implement the following:
 
 1. Styling: try to get as close as possible to the mockups, without using any CSS framework. You may use the grid system that you built in week 4.
 2. Implement the signup component. You can look at the login component for some inspiration, even though it's not 100% the same.
-    i. Create the signup form in `src/components/pages/SignUp.js`
-    ii. Make an API call to the "Create new user (signup)" endpoint
-    iii. On success, use React Router's `browserHistory` to redirect the user to `/login`
-    iv. On error, display the errors in the form
+    1. Create the signup form in `src/components/pages/SignUp.js`
+    2. Make an API call to the "Create new user (signup)" endpoint
+    3. On success, use React Router's `browserHistory` to redirect the user to `/login`
+    4. On error, display the errors in the form
 3. For logged in users, make sure the menu displays their avatar URL from the API. To do this you'll have to call the `/auth/me` endpoint and retrieve the `avatarUrl` of the logged in user.
 4. For logged in users on the home page, make the `+` button work. It should open a modal prompting the user to create a new board like in the mockups. On submit, make the appropriate API call. Once the board is created, redirect the user to that board's page with React Router's `browserHistory`.
 5. Fix `src/components/pages/Board.js` to add a `+` button if the logged in user owns the current board. Then, implement that `+` to let the logged in user add a bookmark on their board. It should open a modal like in the mockup, then make the appropriate API call to create the bookmark. On success, you should refresh the list of bookmarks from the server, making sure to keep the component DRY.
@@ -130,3 +131,9 @@ Then, you need to implement the following:
 9. In a similar way to (7) and (8), also provide `Delete` buttons to allow the user to delete their own boards as well as bookmarks individually.
 
 You will have to test all this UI by connecting it to the real API you are building rather than the mock data from Apiary. To do this, simply modify the `API_URL` config in `src/config.js` and test away.
+
+---
+
+### New features to be implemented before Friday:
+
+TODO.
