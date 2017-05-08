@@ -64,4 +64,46 @@ Apart from this time constraint, your other constraint is money. These consultan
 ## Document from Dashboardly
 This document outlines what is currently missing to make the MVP 100% functional.
 
-TODO.
+### What is currently there?
+
+#### Database
+The table structure that supports the MVP is 100% created and available in the API repository.
+
+#### Back-end API
+There is an **[ExpressJS API for Dashboardly](https://github.com/ziad-saab/dashboardly-api)**. It is not 100% in compliance with the API contract. More is explained below.
+
+#### Front-end
+There is a **[web app for Dashboardly](https://github.com/ziad-saab/dashboardly-frontend)**. It is not 100% complete nor in line with the mockups. More is explained below.
+
+### What is left to do?
+
+#### Database
+Have a look at the queries being made on the database and verify if any indexes still need to be added to make some queries faster.
+
+#### Back-end API
+First, you should read all the existing code and understand what it's doing. You should also execute the code in your development environment and make sure it is working.
+
+Then, you need to implement the following:
+
+1. You need to fill in the code for the `controllers/bookmarks.js` module. You can take advantage of the already completed code in `controllers/boards.js` to get a hint on how to do it. You'll also have to implement some accompanying methods in the `DashboardlyDataLoader` module. **Make sure to validate the user before modifying/deleting bookmarks!!** 
+2. You'll also need to fill in the code for the `POST /boards/:id/bookmarks` handler in `controllers/boards.js` in a similar way. This may also require adding methods in `DashboardlyDataLoader`.
+3. Fill in the code for the `GET /boards/:id/bookmarks` handler in `controllers/boards.js`.
+4. Fill in the code for the `GET /auth/me` handler in `controllers/auth.js`.
+  
+
+When you are done, make sure to test your API thoroughly using [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en). You should test the following:
+
+1. List all boards
+2. List a single board
+3. List all the links for a single board
+4. Signup, as well as receiving proper errors where appropriate
+5. Login and get a token, as well as receiving proper errors where appropriate, then try it with `/auth/me`
+6. Logout, and checking that your previous token was indeed removed from the system
+7. Using a valid token, create/modify/delete a new board
+8. Try creating a board without a token and make sure it fails
+9. Using a valid token, create/modify/delete a new bookmark under a board you own
+10. Using a valid token, create a new bookmark under a board you don't own and make sure it fails
+11. Try creating/modifying/deleting a bookmark without a token and make sure it fails
+
+Once all these elements are working through Postman, the next step will be to test how well they integrate with the client application. Since the app was built using the Apiary mock server, there should be a 100% match :)
+
