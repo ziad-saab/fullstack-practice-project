@@ -136,4 +136,8 @@ You will have to test all this UI by connecting it to the real API you are build
 
 ### New features to be implemented before Friday:
 
-TODO.
+#### Search boards
+Allow users to search boards on the homepage by keyword. This could be as simple as doing a `LIKE "%keyword%"` (slowwwwww) query to your MySQL database, or learning about [Elasticsearch](https://www.elastic.co/) and using it thru a [SaaS provider](https://bonsai.io/). Expose this functionality through your API using the `GET /boards` endpoint, and accepting a `keyword` query string parameter.
+
+#### Unlisted (but public) boards
+Allow the creator of a board to mark it as "Unlisted" (both when creating and modifying a board). This means it will not show in search results nor on the home page with all boards, but anyone with the link can visit it. 
