@@ -13,7 +13,7 @@ To help you complete your work successfully, Dashboardly has done three things f
 
 Your task is to bring the project forward as much as possible for Friday, which was announced as the official launch date for Dashboardly a year ago.
 
-Apart from this time constraint, your other constraint is money. These consultants are :moneybag:uper expensive, and you are only allowed **25 credits** per team. Each credit gives you a **15-minute slot** with a mentor and you cannot take more than one slot per hour. A credit is all or nothing: if you use mentor time for only three minutes, you have consumed a credit.
+Apart from this time constraint, your other constraint is money. These consultants are :moneybag:uper expensive, and you are only allowed **15 credits** per team. Each credit gives you a **15-minute slot** with a mentor and you cannot take more than one slot per hour. A credit is all or nothing: if you use mentor time for only three minutes, you have consumed a credit.
 
 ---
 
